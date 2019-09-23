@@ -5,17 +5,6 @@
 </template>
 <script>
 export default {
-  props: {},
-  components: {},
-  data() {
-    return {
-     
-    };
-  },
-  computed: {},
-  methods: {},
-  created() {},
-  mounted() {}
 };
 </script>
 <style lang="scss">
@@ -33,9 +22,8 @@ html{
 html,
 body,
 #app,
-.wrap {
+.wrap,.box {
   width: 100%;
   height: 100%;
 }
-
 </style>

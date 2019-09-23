@@ -1,14 +1,12 @@
 <template>
-  <div class="wrap">
+  <div class="box">
     <div class="main">购物车</div>
     <Footer></Footer>
   </div>
 </template>
 <script>
-import Footer from "../../components/Footer/index.vue";
 export default {
   props: {},
-  components: {Footer},
   data() {
     return {};
   },
@@ -19,21 +17,22 @@ export default {
 };
 </script>
 <style lang="scss">
-.wrap {
+.box {
   display: flex;
   flex-direction: column;
+  font-size:14px;
 }
 .main {
   flex: 1;
 }
 .footer {
   width: 100%;
-  height: 35px;
+  height:0.45rem;
   display: flex;
 
   a {
     flex: 1;
-    line-height: 35px;
+    line-height: 0.45rem;
     text-align: center;
   }
   .router-link-active {
