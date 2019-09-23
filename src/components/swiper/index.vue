@@ -1,7 +1,9 @@
 <template>
   <div class="swiper-container">
      <swiper :options="swiperOption" >
-    <swiper-slide v-for="(slide,index) in swiperSlides" :key="index">I'm Slide {{ slide }}</swiper-slide>
+    <swiper-slide v-for="(item) in swiperSlides" :key="item.ad_position_id">
+      <img :src="item.image_url" alt="">
+    </swiper-slide>
     <div class="swiper-pagination" slot="pagination"></div>
   </swiper>
   </div>
@@ -11,7 +13,7 @@ import "swiper/dist/css/swiper.css"; ////这里注意具体看使用的版本是
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 
 export default {
-  props: {},
+  props: ["bannerData"],
   components: {
     swiperSlide,
     swiper
@@ -26,13 +28,17 @@ export default {
           speed:300,
           loop:true
         },
-        swiperSlides: [1, 2, 3, 4, 5]
+        swiperSlides: []
     };
   },
   computed: {},
   methods: {},
-  created() {},
-  mounted() {}
+  created() {
+    
+  },
+  mounted() {
+    this.swiperSlides = this.bannerData.banner
+  }
 };
 </script>
 <style scoped lang="scss">
@@ -40,5 +46,9 @@ export default {
   width: 100%;
   height: 2rem;
   border-bottom: 1px solid #eee;
+}
+img{
+  width: 100%;
+  height: 100%;
 }
 </style>
