@@ -1,29 +1,70 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div class="wrap">
+    <router-view></router-view>
+    <div>
+      <!-- <router-link ></router-link> -->
+      <router-link v-for="(item,index) in footer" :to="item.path" :key="index" >{{item.title}}</router-link>
     </div>
-    <router-view/>
   </div>
 </template>
+<script>
+export default {
+  props:{
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+  },
+  components:{
+
+  },
+  data(){
+    return {
+      footer:[
+        {
+          title:"首页",
+          path:'/'
+        },
+        {
+          title:'专题',
+          path:'/catelog'
+        },
+        {
+          title:'分类',
+          path:'/topic'
+        },
+        {
+          title:'购物车',
+          path:'/cart'
+        },
+        {
+          title:'我的',
+          path:'/mine'
+        }
+      ]
     }
+  },
+  computed:{
+
+  },
+  methods:{
+
+  },
+  created(){
+
+  },
+  mounted(){
+
   }
+}
+</script>
+<style scoped lang="css">
+*{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+html,body,#app,.wrap{
+  width: 100%;
+  height: 100%;
 }
 </style>
