@@ -1,70 +1,40 @@
 <template>
   <div class="wrap">
-    <router-view></router-view>
-    <div>
-      <!-- <router-link ></router-link> -->
-      <router-link v-for="(item,index) in footer" :to="item.path" :key="index" >{{item.title}}</router-link>
-    </div>
+      <router-view></router-view>
+    
+    
   </div>
 </template>
 <script>
 export default {
-  props:{
-
-  },
-  components:{
-
-  },
-  data(){
+  props: {},
+  components: {},
+  data() {
     return {
-      footer:[
-        {
-          title:"首页",
-          path:'/'
-        },
-        {
-          title:'专题',
-          path:'/catelog'
-        },
-        {
-          title:'分类',
-          path:'/topic'
-        },
-        {
-          title:'购物车',
-          path:'/cart'
-        },
-        {
-          title:'我的',
-          path:'/mine'
-        }
-      ]
-    }
+     
+    };
   },
-  computed:{
-
-  },
-  methods:{
-
-  },
-  created(){
-
-  },
-  mounted(){
-
-  }
-}
+  computed: {},
+  methods: {},
+  created() {},
+  mounted() {}
+};
 </script>
-<style scoped lang="css">
-*{
+<style lang="scss">
+* {
   padding: 0;
   margin: 0;
   list-style: none;
   text-decoration: none;
   box-sizing: border-box;
+  color:#000;
 }
-html,body,#app,.wrap{
+html,
+body,
+#app,
+.wrap {
   width: 100%;
   height: 100%;
 }
+
 </style>

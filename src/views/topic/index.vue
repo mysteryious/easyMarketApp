@@ -1,15 +1,19 @@
 <template>
-    <div>
-        分类
+    <div class="wrap">
+        <div class="main">
+            分类
+        </div>
+        <Footer></Footer>
     </div>
 </template>
 <script>
+import Footer from '../../components/Footer/index.vue'
 export default {
     props:{
 
     },
     components:{
-
+        Footer
     },
     data(){
         return {
@@ -30,6 +34,26 @@ export default {
     }
 }
 </script>
-<style scoped lang="">
-
+<style lang="scss">
+.wrap {
+  display: flex;
+  flex-direction: column;
+}
+.main {
+  flex: 1;
+}
+.footer {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  
+  a {
+    flex: 1;
+    line-height: 35px;
+    text-align: center;
+  }
+  .router-link-active {
+    color: skyblue;
+  }
+}
 </style>
