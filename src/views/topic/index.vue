@@ -7,13 +7,9 @@
     </div>
 </template>
 <script>
-import Footer from '../../components/Footer/index.vue'
 export default {
     props:{
 
-    },
-    components:{
-        Footer
     },
     data(){
         return {

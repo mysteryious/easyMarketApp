@@ -1,6 +1,6 @@
 <template>
   <div class="wrap">
-    <div class="main">首页</div>
+    <div class="main">login</div>
     <Footer></Footer>
   </div>
 </template>
@@ -33,6 +33,7 @@ export default {
     flex: 1;
     line-height: 35px;
     text-align: center;
+    
   }
   .router-link-active {
     color: skyblue;
