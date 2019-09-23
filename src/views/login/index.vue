@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { mapActions, mapMutations } from "vuex";
+import { mapActions } from "vuex";
 import { setocaltion } from "../../utils/login";
 
 export default {

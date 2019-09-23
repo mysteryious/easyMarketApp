@@ -14,5 +14,9 @@ class Https {
   *   size: 每页数据量
   * */
   public getTopicData = (parmas: any) => instance.get('/topic/list', parmas);
+
+   // 获取首页数据
+  public getHomeData = () => instance.get('/');
 }
 export default new Https();
+
