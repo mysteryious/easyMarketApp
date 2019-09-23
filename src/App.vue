@@ -1,40 +1,11 @@
 <template>
   <div class="wrap">
       <router-view></router-view>
-    
-    
   </div>
 </template>
 <script>
 export default {
-  props: {},
-  components: {},
-  data() {
-    return {
-     
-    };
-  },
-  computed: {},
-  methods: {},
-  created() {},
-  mounted() {}
 };
 </script>
 <style lang="scss">
-* {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  text-decoration: none;
-  box-sizing: border-box;
-  color:#000;
-}
-html,
-body,
-#app,
-.wrap {
-  width: 100%;
-  height: 100%;
-}
-
 </style>
