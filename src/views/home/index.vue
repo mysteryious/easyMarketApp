@@ -18,7 +18,6 @@ export default {
   data() {
     return {
       channelWrapList: ["居家", "餐厨", "配件", "服装", "志趣"],
-      banner:[]
     };
   },
   components: {
