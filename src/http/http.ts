@@ -2,8 +2,10 @@ import axios from 'axios';
 import { getocaltion } from '../utils/login';
 
 const instance = axios.create({
-  baseURL: '/api',
-  withCredentials: true, // 跨域类型时是否在请求中协带cookie
+  baseURL: 'http://169.254.36.139:8888',
+  headers: {
+    authorization: getocaltion('token') === null ? '' : getocaltion('authorization'),
+  },
 });
 
 // http请求拦截器
