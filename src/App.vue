@@ -1,8 +1,6 @@
 <template>
   <div class="wrap">
       <router-view></router-view>
-    
-    
   </div>
 </template>
 <script>
@@ -28,6 +26,9 @@ export default {
   text-decoration: none;
   box-sizing: border-box;
   color:#000;
+}
+html{
+  font-size: calc(100/375*100vw);
 }
 html,
 body,

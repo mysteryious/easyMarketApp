@@ -45,14 +45,6 @@ export default {
   width: 100%;
   height: 35px;
   display: flex;
-
-  a {
-    flex: 1;
-    line-height: 35px;
-    text-align: center;
-  }
-  .router-link-active {
-    color: red;
-  }
+  box-shadow:0 0 10px #ccc ;
 }
 </style>

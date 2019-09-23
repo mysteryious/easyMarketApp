@@ -33,13 +33,13 @@ export default new Router({
       component: () => import('./views/mine/index.vue'),
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('./views/About.vue'),
+      path: '/login',
+      name: 'login',
+      component: () => import('./views/login/index.vue'),
     },
     {
       path:'/',
-      redirect:'/home'
+      redirect:'/login'
     }
    
   ],
