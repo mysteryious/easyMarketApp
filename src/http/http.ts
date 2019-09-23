@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getocaltion } from '../utils/login';
 
 const instance = axios.create({
-  baseURL: 'http://169.254.36.139:8888',
+  baseURL: 'http://127.0.0.1:8888',
   headers: {
     authorization: getocaltion('token') === null ? '' : getocaltion('authorization'),
   },
