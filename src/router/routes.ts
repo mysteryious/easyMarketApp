@@ -25,9 +25,14 @@ export default [
     component: () => import('../views/mine/index.vue'),
   },
   {
-    path: '/login',
     name: 'login',
+    path: '/login',
     component: () => import('../views/login/index.vue'),
+  },
+  {
+    name: '专题详情',
+    path: '/topicDetail/:id',
+    component: () => import('../views/topicDetail/index.vue'),
   },
   {
     path: '/',

@@ -1,0 +1,35 @@
+.commentList {
+    background: white;
+    padding: 0.2rem;
+    .commentItem:last-child {
+        border: 0;
+    }
+    .commentItem {
+        width: 100%;
+        height: auto;
+        background: white;
+        color: gray;
+        padding-bottom: 0.1rem;
+        border-bottom: 1px solid gray;
+        .userInfo {
+            height: 0.4rem;
+            font-size: 0.14rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            div:nth-child(1) {
+                flex: 1;
+                color: black;
+            }
+            div:nth-child(2) {
+                width: auto;
+                color: gray;
+            }
+        }
+        .userComment {
+            line-height: 0.3rem;
+            font-size: 0.15rem;
+            color: gray;
+        }
+    }
+}

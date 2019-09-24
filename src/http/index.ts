@@ -15,8 +15,29 @@ class Https {
   * */
   public getTopicData = (parmas: any) => instance.get('/topic/list', parmas);
 
-   // 获取首页数据
+  // 获取首页数据
   public getHomeData = () => instance.get('/');
+  /*
+   * 根据专题Id获取专题详情
+   * parmas:
+   *   id: 专题id
+   * */
+  public getTopicDetail = (parmas: any) => instance.get('/topic/detail', parmas);
+  /*
+   * 根据专题ID或者商品ID获取评论获取相关专题
+   * parmas:
+   *   valueId: 专题id、商品id
+   *  typeId：1:专题id、0:商品id
+   *  page:
+   *  size:
+   * */
+  public getCommentList = (parmas: any) => instance.get('/comment/list', parmas);
+  /*
+    * 根据专题Id获取相关专题
+    * parmas:
+    *   id: 专题id
+    * */
+  public getTopicDetailRelated = (parmas: any) => instance.get('/topic/related', parmas);
 }
 export default new Https();
 

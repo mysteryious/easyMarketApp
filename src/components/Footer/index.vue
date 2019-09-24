@@ -1,36 +1,44 @@
 <template>
   <div class="footer">
-    <router-link v-for="(item,index) in footer" :to="item.path" :key="index">{{item.title}}</router-link>
+    <router-link v-for="(item,index) in footer" :to="item.path" :key="index" class="foot-item">
+      <i :class="item.name"></i>
+      <span>{{item.title}}</span>
+    </router-link>
   </div>
 </template>
 <script>
-
+import "../../static/font/iconfont"
 export default {
-  name:"Footer",
+  name: "Footer",
   props: {},
   components: {},
   data() {
     return {
-        footer: [
+      footer: [
         {
           title: "首页",
-          path: "/home"
+          path: "/home",
+          name: "iconfont icon-home"
         },
         {
           title: "专题",
-          path: "/catelog"
+          path: "/catelog",
+          name: "iconfont icon-zhuanti"
         },
         {
           title: "分类",
-          path: "/topic"
+          path: "/topic",
+          name: "iconfont icon-classify"
         },
         {
           title: "购物车",
-          path: "/cart"
+          path: "/cart",
+          name: "iconfont icon-gouwuche"
         },
         {
           title: "我的",
-          path: "/mine"
+          path: "/mine",
+          name: "iconfont icon-mine"
         }
       ]
     };
@@ -42,10 +50,5 @@ export default {
 };
 </script>
 <style lang="scss">
-.footer {
-  width: 100%;
-  height: 35px;
-  display: flex;
-  box-shadow:0 0 10px #ccc ;
-}
+@import "./index.scss";
 </style>

@@ -1,0 +1,114 @@
+.topic {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+}
+@mixin juzhong {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@mixin juzuo {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+@mixin juyou {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.header {
+    height: 0.5rem;
+    background: #fff;
+    @include juzhong;
+    b{
+        flex: 1;
+        font-size: 17px;
+        @include juzhong;
+    }
+    div{
+        flex: 2;
+    }
+    span{
+        flex: 8;
+        @include juzuo;
+    }
+}
+.main {
+    flex: 1;
+    overflow: auto;
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+}
+
+.commentWrap {
+    width: 100%;
+    height: auto;
+    background: white;
+    margin-top: 0.2rem;
+    .titleLine {
+        width: 100%;
+        position: relative;
+        display: flex;
+        padding: 0 0.2rem;
+        font-size: 12px;
+        padding-bottom: 0.15rem;
+        &:after {
+            content: "";
+            width: 200%;
+            height: 1px;
+            position: absolute;
+            bottom: 0;
+            transform: scale(0.5);
+            transform-origin: 0;
+            background-color: gray;
+        }
+        div.titleName {
+            font-size: 16px;
+            flex: 1;
+            height: 100%;
+        }
+        div.titleIcon {
+            width: 1rem;
+            height: auto;
+            text-align: right;
+        }
+    }
+    .many {
+        text-align: center;
+    }
+    .relateTopic {
+        padding-top: 0.1rem;
+        .relateTopicTitle {
+            line-height: 0.4rem;
+            text-align: center;
+            font-size: 17px;
+        }
+        .relateTopicItem {
+            background: white;
+            padding: 0.1rem 0.1rem 0 0.1rem;
+            margin-bottom: 0.1rem;
+            display: block;
+            img {
+                width: 100%;
+                height: 2rem;
+            }
+            div {
+                line-height: 0.5rem;
+                color: gray;
+                font-size: 0.14rem;
+            }
+        }
+    }
+}
+.footer {
+    height: 0.4rem;
+    background: lavender;
+}

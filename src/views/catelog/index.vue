@@ -2,7 +2,12 @@
   <div class="box">
     <div class="main">
       <div class="tabPageContent">
-        <a class="topicItem" v-for="(list,index) in topicData" :key="index">
+        <a
+          class="topicItem"
+          v-for="(list,index) in topicData"
+          :key="index"
+          :href="'topicDetail/'+ list.id"
+        >
           <img :src="list.scene_pic_url" />
           <div :style="{'margin-top':'0.05rem'}">{{list.title}}</div>
           <div :style="{color:'gray'}">{{list.subtitle}}</div>
@@ -18,18 +23,20 @@ import { mapActions, mapState } from "vuex";
 export default {
   props: {},
   data() {
-    return {};
+    return {
+      topicData:[]
+    };
   },
-  computed: {
-    ...mapState("catelog", ["topicData"])
-  },
+  computed: {},
   methods: {
     ...mapActions("catelog", ["getCatelogDate"])
   },
   created() {},
   mounted() {
     //获取数据
-    this.getCatelogDate({ params: { page: 1, size: 100 } });
+    this.getCatelogDate({ params: { page: 1, size: 100 } }).then(res => {
+      this.topicData = res.data;
+    });
   }
 };
 </script>
@@ -65,20 +72,6 @@ a {
     white-space: nowrap;
     height: 0.3rem;
     line-height: 0.3rem;
-  }
-}
-.footer {
-  width: 100%;
-  height: 0.45rem;
-  display: flex;
-
-  a {
-    flex: 1;
-    line-height: 0.45rem;
-    text-align: center;
-  }
-  .router-link-active {
-    color: skyblue;
   }
 }
 </style>

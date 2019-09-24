@@ -4,7 +4,7 @@ import router from './router/index';
 import store from './store/store';
 import Element from './components/element';
 import VueLazyload from 'vue-lazyload';
-
+import './static/font/iconfont.css';
 
 Vue.config.productionTip = false;
 Vue.use(Element);
