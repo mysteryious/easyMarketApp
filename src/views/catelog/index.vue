@@ -69,12 +69,12 @@ a {
 }
 .footer {
   width: 100%;
-  height: 0.45rem;
+  height: .5rem;
   display: flex;
 
   a {
     flex: 1;
-    line-height: 0.45rem;
+    line-height: .5rem;
     text-align: center;
   }
   .router-link-active {

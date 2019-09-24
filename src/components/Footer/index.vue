@@ -44,7 +44,7 @@ export default {
 <style lang="scss">
 .footer {
   width: 100%;
-  height: 35px;
+  height: .5rem;
   display: flex;
   box-shadow:0 0 10px #ccc ;
 }
