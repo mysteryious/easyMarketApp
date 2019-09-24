@@ -46,7 +46,7 @@ export default {
   },
   computed: {},
   methods: {
-    ...mapActions("catelog", [
+    ...mapActions("topic", [
       "getTopicDetail",
       "getCommentList",
       "getTopicDetailRelated"
@@ -72,7 +72,6 @@ export default {
       }
     }).then(res => {
       this.commentList = res.data;
-      console.log(res.data)
     });
     //根据专题Id获取相关专题
     this.getTopicDetailRelated(params).then(res => {
@@ -83,8 +82,4 @@ export default {
 </script>
 <style lang="scss">
 @import "./index.scss";
-i {
-  width: 16px;
-  height: 16px;
-}
 </style>

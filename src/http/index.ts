@@ -38,6 +38,12 @@ class Https {
     *   id: 专题id
     * */
   public getTopicDetailRelated = (parmas: any) => instance.get('/topic/related', parmas);
+  /*
+   * 获取分类ID分类Nav数据
+   * params:
+   *   id: 当前分类Id
+   * */
+  public getCategoryNavData = (parmas: any) => instance.get('/goods/category', parmas);
 }
 export default new Https();
 

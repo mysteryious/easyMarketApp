@@ -22,12 +22,12 @@ export default {
         },
         {
           title: "专题",
-          path: "/catelog",
+          path: "/topic",
           name: "iconfont icon-zhuanti"
         },
         {
           title: "分类",
-          path: "/topic",
+          path: "/catelog",
           name: "iconfont icon-classify"
         },
         {
