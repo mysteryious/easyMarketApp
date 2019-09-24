@@ -25,5 +25,4 @@ export default {
 .main {
   flex: 1;
 }
-
 </style>
