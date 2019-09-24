@@ -39,11 +39,16 @@ class Https {
     * */
   public getTopicDetailRelated = (parmas: any) => instance.get('/topic/related', parmas);
   /*
-   * 获取分类ID分类Nav数据
-   * params:
-   *   id: 当前分类Id
+    * 分类页初始化信息获取
+    * */
+   public getCatalogInitData = (parmas: any) => instance.get('/catalog/index', parmas);
+
+  /*
+   * 根据分类ID获取当前分类信息和子分类
+   * parmas:
+   *   id: 分类Id
    * */
-  public getCategoryNavData = (parmas: any) => instance.get('/goods/category', parmas);
+  public getCatalogMsg = (parmas: any) => instance.get('/catalog/current', parmas);
 }
 export default new Https();
 

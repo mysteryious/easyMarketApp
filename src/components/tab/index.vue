@@ -1,23 +1,27 @@
 <template>
   <div class="tab">
-   this is tab
-   
+    <div  v-for="list in categoryList" :key="list.id" :class="ind==list.id ? 'tab-item active' : 'tab-item'">
+      <li @click="chengIndex(list.id)">{{list.name}}</li>
+    </div>
   </div>
 </template>
 <script>
 export default {
   name: "Tab",
-  props: {},
+  props: {
+    categoryList: Array,
+    chengIndex:Function,
+    ind:Number
+  },
   components: {},
   data() {
-    return {
-    
-    };
+    return {};
   },
   computed: {},
   methods: {},
   created() {},
-  mounted() {}
+  mounted() {
+  }
 };
 </script>
 <style lang="scss">

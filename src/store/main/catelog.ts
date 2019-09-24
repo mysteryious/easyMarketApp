@@ -11,11 +11,15 @@ export default ({
   mutations: {
   },
   actions: {
-    // 获取专题数据
-    async getTopicData({ commit }: any, payload?: any) {
-      const result = await http.getTopicData(payload);
+    //  分类页初始化信息获取
+    async getCatalogInitData({ commit }: any, payload?: any) {
+      const result = await http.getCatalogInitData(payload);
       return result.data;
     },
-
+    // 获取分类ID分类Nav数据
+    async getCatalogMsg({ commit }: any, payload?: any) {
+      const result = await http.getCatalogMsg(payload);
+      return result.data;
+    },
   },
 });
