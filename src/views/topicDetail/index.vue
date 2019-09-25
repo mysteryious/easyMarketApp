@@ -1,13 +1,8 @@
 <template>
   <div class="topic">
-    <header class="header">
-      <b @click="replace">&lt;</b>
-      <div></div>
-      <span>{{topicDetail.title}}</span>
-    </header>
+    <Header :title="topicDetail.title"></Header>
     <main class="main">
       <div class="main-pic" v-html="this.topicDetail.content"></div>
-
       <div class="commentWrap">
         <div class="titleLine">
           <div class="titleName">精选留言</div>
@@ -51,9 +46,6 @@ export default {
       "getCommentList",
       "getTopicDetailRelated"
     ]),
-    replace() {
-      this.$router.history.go(-1);
-    },
     commentWrite() {
       //写评论
       this.$router.history.push(`/topicCommentWrite/${this.topicDetail.id}`);
