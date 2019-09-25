@@ -3,7 +3,14 @@
     <div class="main">
       <Swiper :bannerData="HomeData.banner"></Swiper>
       <div class="channelWrap">
-        <span v-for="(item,index) in channelWrapList" :key="index">{{item}}</span>
+        <a  
+        v-for="(item,index) in HomeData.channel" 
+        :key="index"
+        :href="'/categorys/'+item.id"
+        >
+          <img :src="item.icon_url" alt="">
+          <div>{{item.name}}</div>
+        </a>
       </div>
       <ListEl :brandBox="HomeData"></ListEl>
       <!-- 新品首发 -->
@@ -68,7 +75,6 @@ export default {
   props: {},
   data() {
     return {
-      channelWrapList: ["居家", "餐厨", "配件", "服装", "志趣"],
       swiperOption: {
         notNextTick: true,
         loop: true,
@@ -118,10 +124,23 @@ export default {
     display: flex;
     background: #fff;
     padding: 0.05rem 0;
-    span {
-      flex: 1;
-      text-align: center;
-      line-height: 0.7rem;
+    a{
+      width: 20%;
+      height: 100%;
+      img{
+        height: 80%;
+        width: .48rem;
+        display: block;
+        padding: .1rem;
+        margin: auto;
+        opacity: 1;
+        transition: all 1s;
+      }
+      div{
+        height: 20%;
+        font-size: .12rem;
+        text-align: center;
+      }
     }
   }
 }

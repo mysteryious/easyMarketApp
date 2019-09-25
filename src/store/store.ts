@@ -5,6 +5,7 @@ import login from './user/login';
 import home from './home/index';
 import topic from './main/topic';
 import catelog from './main/catelog';
+import categorys from './main/categorys';
 
 Vue.use(Vuex);
 
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     topic,
     home,
     catelog,
+    categorys,
   },
 });
 

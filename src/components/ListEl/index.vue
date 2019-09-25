@@ -21,7 +21,6 @@ export default {
   },
   computed: {
     getbrandList() {
-      console.log(this.brandBox)
       return this.brandBox.brandList;
     }
   },
