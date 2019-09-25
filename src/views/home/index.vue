@@ -69,7 +69,7 @@ import Swiper from "../../components/swiper/index.vue";
 import CateGoryBox from '../../components/cateGoryBox/index.vue'
 import { mapActions, mapState } from "vuex";
 import { getHomeData } from "../../store/home/index";
-import "swiper/dist/css/swiper.css"; ////这里注意具体看使用的版本是否需要引入样式，以及具体位置。
+import "../../../node_modules/vue-awesome-swiper/node_modules/swiper/dist/css/swiper.css"; ////这里注意具体看使用的版本是否需要引入样式，以及具体位置。
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 export default {
   props: {},
@@ -104,7 +104,10 @@ export default {
   },
   created() {},
   mounted() {
-    this.getHomeData();
+    this.getHomeData().then(res=>{
+      console.log(res)
+    });
+
   }
 };
 </script>

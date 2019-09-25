@@ -16,6 +16,10 @@ export default ({
       const result = await http.getCatalogInitData(payload);
       return result.data;
     },
-
+    // 根据分类Id或者制造商Id获取商品
+    async getGoodsList({ commit }: any, payload?: any) {
+      const result = await http.getGoodsList(payload);
+      return result.data;
+    },
   },
 });
