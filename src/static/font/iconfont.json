@@ -83,6 +83,13 @@
       "unicode_decimal": 58905
     },
     {
+      "icon_id": "3979408",
+      "name": "哭脸",
+      "font_class": "sad",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    },
+    {
       "icon_id": "5188101",
       "name": "专题",
       "font_class": "zhuanti",

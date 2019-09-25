@@ -1,7 +1,7 @@
 <template>
   <div class="noTabPageContent">
     <div class="header">
-      <div class="left"><</div>
+      <div class="left">&it;</div>
       <div class="title">奇趣分类</div>
       <div class="right"></div>
     </div>

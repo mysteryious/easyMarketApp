@@ -39,9 +39,10 @@ export default {
         mobile: this.mobile,
         password: this.password
       }).then(res => {
+        console.log(res)
         if (res.data) {
-          setocaltion("token", res.sessionKey);
-          setocaltion("nideShopUser", res.mobile);
+          setocaltion("token", res.data.sessionKey);
+          setocaltion("nideShopUser", res.data.mobile);
           this.$router.history.push("/home");
         } else {
           alert(res.errmsg);

@@ -1,26 +1,26 @@
 export default [
   {
-    name: 'home',
+    name: '首页',
     path: '/home',
     component: () => import('../views/home/index.vue'),
   },
   {
-    name: 'topic',
+    name: '专题',
     path: '/topic',
     component: () => import('../views/topic/index.vue'),
   },
   {
-    name: 'catelog',
+    name: '分类',
     path: '/catelog',
     component: () => import('../views/catelog/index.vue'),
   },
   {
-    name: 'cart',
+    name: '购物车',
     path: '/cart',
     component: () => import('../views/cart/index.vue'),
   },
   {
-    name: 'mine',
+    name: '我的',
     path: '/mine',
     component: () => import('../views/mine/index.vue'),
   },
@@ -35,9 +35,14 @@ export default [
     component: () => import('../views/topicDetail/index.vue'),
   },
   {
-    name: 'categorys',
+    name: '分类商品',
     path: '/categorys/:id',
     component: () => import('../views/categorys/index.vue'),
+  },
+  {
+    name: '写专题评论',
+    path: '/topicCommentWrite/:id',
+    component: () => import ('../views/topicCommentWrite/index.vue'),
   },
   {
     path: '/',
