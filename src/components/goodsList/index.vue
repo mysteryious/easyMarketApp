@@ -2,7 +2,7 @@
     <div>
         <div class="goodsItemImg">
             <img :src="GoodsItem.list_pic_url" alt="">
-        </div>
+        </div>  
         <div class="goodsItemName">{{GoodsItem.name}}</div>
         <div class="goodsItemPrice">￥{{GoodsItem.retail_price}}</div>
     </div>

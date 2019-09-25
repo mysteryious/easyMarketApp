@@ -51,6 +51,11 @@ class Https {
   public getCatalogMsg = (parmas: any) => instance.get('/catalog/current', parmas);
   public getCategoryNavData = (parmas: any) => instance.get('/goods/category', parmas);
 
+  /**
+   * // 根据分类Id或者制造商Id获取商品
+   */
+  public getGoodsList = (parmas: any) => instance.get('/goods/list', parmas);
+
 
 }
 export default new Https();
