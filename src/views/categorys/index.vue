@@ -1,10 +1,7 @@
 <template>
   <div class="noTabPageContent">
-    <div class="header">
-      <div class="left" @click="GoTo">&lt;</div>
-      <div class="title">奇趣分类</div>
-      <div class="right"></div>
-    </div>
+    <Header title="奇趣分类"></Header>
+    
     <div class="tabWrap">
       <div class="am-tabs">
         <div
