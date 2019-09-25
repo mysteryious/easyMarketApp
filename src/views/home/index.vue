@@ -12,12 +12,13 @@
           <div>{{item.name}}</div>
         </a>
       </div>
+      <!-- 品牌制造商直供 -->
       <ListEl :brandBox="HomeData"></ListEl>
       <!-- 新品首发 -->
       <div class="newGoodsBox">
         <div class="newGoodsTitle">新品首发</div>
         <div class="newGoodsWrap">
-          <a class="newGoodsItem" v-for="(item,index) in HomeData.newGoodsList" :key="index">
+          <a class="newGoodsItem" v-for="(item,index) in HomeData.newGoodsList" :key="index" :href="'goods/'+item.id">
             <img class="imgLazyload loadEnd" :src="item.list_pic_url" alt />
             <div class="newGoodsName">{{item.name}}</div>
             <div class="newGoodsPrice">￥{{item.retail_price}}</div>
@@ -69,7 +70,7 @@ import Swiper from "../../components/swiper/index.vue";
 import CateGoryBox from '../../components/cateGoryBox/index.vue'
 import { mapActions, mapState } from "vuex";
 import { getHomeData } from "../../store/home/index";
-import "swiper/dist/css/swiper.css"; ////这里注意具体看使用的版本是否需要引入样式，以及具体位置。
+import "../../../node_modules/vue-awesome-swiper/node_modules/swiper/dist/css/swiper.css"; ////这里注意具体看使用的版本是否需要引入样式，以及具体位置。
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 export default {
   props: {},

@@ -55,8 +55,15 @@ class Https {
    * // 根据分类Id或者制造商Id获取商品
    */
   public getGoodsList = (parmas: any) => instance.get('/goods/list', parmas);
+  /**
+   * 根据制造商ID获取制造商相关商品
+   */
+  public getBrandDetail = (parmas: any) => instance.get('/brand/detail', parmas);
 
-
+  /**
+   * 获取商品详情
+   */
+  public getGoodsDetail = (parmas: any) => instance.get('/goods/detail', parmas);
 }
 export default new Https();
 

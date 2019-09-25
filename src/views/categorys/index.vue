@@ -1,6 +1,9 @@
 <template>
   <div class="noTabPageContent">
-    <Header title="奇趣分类"></Header>
+    <div class="header">
+      <Header title="奇趣分类"></Header>
+    </div>
+    
     
     <div class="tabWrap">
       <div class="am-tabs">
@@ -74,6 +77,8 @@ export default {
 </script>  
 <style lang="scss">
 .noTabPageContent {
+      background: #f5f5f9;
+
   width: 100%;
   height: 100%;
   font-size: 14px;
@@ -111,6 +116,7 @@ export default {
   .tabWrap {
     width: 100%;
     height: auto;
+    background: #fff;
     z-index: 10;
     .am-tabs {
       box-sizing: border-box;
