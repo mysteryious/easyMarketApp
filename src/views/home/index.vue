@@ -8,7 +8,7 @@
         :key="index"
         :href="'/categorys/'+item.id"
         >
-          <img :src="item.icon_url" alt="">
+          <img v-lazy="item.icon_url" alt="">
           <div>{{item.name}}</div>
         </a>
       </div>
@@ -18,7 +18,7 @@
         <div class="newGoodsTitle">新品首发</div>
         <div class="newGoodsWrap">
           <a class="newGoodsItem" v-for="(item,index) in HomeData.newGoodsList" :key="index">
-            <img class="imgLazyload loadEnd" :src="item.list_pic_url" alt />
+            <img class="imgLazyload loadEnd" v-lazy="item.list_pic_url" alt />
             <div class="newGoodsName">{{item.name}}</div>
             <div class="newGoodsPrice">￥{{item.retail_price}}</div>
           </a>
@@ -29,7 +29,7 @@
         <div class="hotGoodsTitle">人气推荐</div>
         <div class="hotGoodsWrap">
           <a class="hotGoodsItem" v-for="(item,index) in HomeData.hotGoodsList" :key="index">
-            <img class="imgLazyload loadEnd" :src="item.list_pic_url" alt />
+            <img class="imgLazyload loadEnd" v-lazy="item.list_pic_url" alt />
             <div class="hotGoodsInfos">
               <div class="hotGoodsName">{{item.name}}</div>
               <div class="hotGoodsInfo">{{item.goods_brief}}</div>
@@ -48,7 +48,7 @@
               v-for="(item,index) in HomeData.topicList"
               :key="index"
             >
-              <img :src="item.scene_pic_url" />
+              <img v-lazy="item.scene_pic_url" />
               <div class="topGoodSubTitle">
                 {{item.title}}
                 <span class="topGoodPrice">￥{{item.price_info}}元起</span>

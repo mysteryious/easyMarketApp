@@ -10,23 +10,6 @@ i {
     width: 16px;
     height: 16px;
 }
-.header {
-    height: 0.5rem;
-    background: #fff;
-    @include juzhong;
-    b {
-        flex: 1;
-        font-size: 17px;
-        @include juzhong;
-    }
-    div {
-        flex: 2;
-    }
-    span {
-        flex: 8;
-        @include juzuo;
-    }
-}
 .main {
     flex: 1;
     overflow: auto;

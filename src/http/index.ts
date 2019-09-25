@@ -33,15 +33,25 @@ class Https {
    * */
   public getCommentList = (parmas: any) => instance.get('/comment/list', parmas);
   /*
+    * 对某个商品或专题ID进行评论
+    * parmas:
+    *   content: 内容
+    *   typeId: 类型
+    *   valueId: id
+    * */
+  public postSetComment = (parmas: any) => instance.post('/comment/post', parmas);
+  /*
     * 根据专题Id获取相关专题
     * parmas:
     *   id: 专题id
     * */
   public getTopicDetailRelated = (parmas: any) => instance.get('/topic/related', parmas);
+
+
   /*
     * 分类页初始化信息获取
     * */
-   public getCatalogInitData = (parmas: any) => instance.get('/catalog/index', parmas);
+  public getCatalogInitData = (parmas: any) => instance.get('/catalog/index', parmas);
 
   /*
    * 根据分类ID获取当前分类信息和子分类

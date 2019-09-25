@@ -1,8 +1,8 @@
 <template>
   <header class="header">
     <b @click="replace">&lt;</b>
-    <div></div>
     <span>{{title}}</span>
+    <div></div>
   </header>
 </template>
 <script>
@@ -39,17 +39,23 @@ export default {
   height: 0.5rem;
   background: #fff;
   @include juzhong;
+  box-shadow: 0 0.04rem 0.08rem 0 rgba(0, 0, 0, 0.12),
+    0 0 6px 0 rgba(0, 0, 0, 0.04);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
   b {
     flex: 1;
     font-size: 17px;
     @include juzhong;
   }
-  div {
-    flex: 5;
-  }
   span {
     flex: 8;
-    @include juzuo;
+    @include juzhong;
+  }
+  div {
+    flex: 1;
   }
 }
 </style>

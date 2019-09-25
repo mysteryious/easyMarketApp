@@ -60,8 +60,8 @@ export default {
     color: #2196f3 !important;
   }
   i {
-    width: 16px;
-    height: 16px;
+    width: .16rem;
+    height: .16rem;
   }
   a {
     flex: 1;
@@ -71,8 +71,8 @@ export default {
     justify-content: center;
   }
   img {
-    width: 16px;
-    height: 16px;
+    width: .16rem;
+    height: .16rem;
   }
   span {
     font-size: 0.12rem;

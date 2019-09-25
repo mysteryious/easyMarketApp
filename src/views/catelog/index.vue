@@ -20,7 +20,7 @@
         <!-- 列表 -->
         <div class="subCategory">
           <a class="subCategoryItem" v-for="list in currentCategory.subCategoryList" :key="list.id">
-            <img :src="list.wap_banner_url" alt />
+            <img v-lazy="list.wap_banner_url" alt />
             <div class="subCategoryItemName">{{list.name}}</div>
           </a>
         </div>

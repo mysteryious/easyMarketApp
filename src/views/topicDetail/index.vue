@@ -18,7 +18,7 @@
           <div class="relateTopicTitle">推荐专题</div>
           <div class="relateTopicItem">
             <a class="topicItem" v-for="(list,index) in topicData" :key="index" :href="list.id">
-              <img :src="list.scene_pic_url" />
+              <img v-lazy="list.scene_pic_url" />
               <div :style="{'margin-top':'0.05rem'}">{{list.title}}</div>
             </a>
           </div>
@@ -47,6 +47,7 @@ export default {
       "getTopicDetailRelated"
     ]),
     commentWrite() {
+      
       //写评论
       this.$router.history.push(`/topicCommentWrite/${this.topicDetail.id}`);
     }
@@ -58,6 +59,7 @@ export default {
     //详情数据
     this.getTopicDetail(params).then(res => {
       this.topicDetail = res;
+      console.log(this.topicDetail)
     });
     //根据专题ID或者商品ID获取评论获取相关专题
     this.getCommentList({
