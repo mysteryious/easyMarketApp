@@ -35,6 +35,11 @@ export default [
     component: () => import('../views/topicDetail/index.vue'),
   },
   {
+    name: 'categorys',
+    path: '/categorys/:id',
+    component: () => import('../views/categorys/index.vue'),
+  },
+  {
     path: '/',
     redirect: '/login',
   },

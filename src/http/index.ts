@@ -44,6 +44,12 @@ class Https {
    *   id: 当前分类Id
    * */
   public getCategoryNavData = (parmas: any) => instance.get('/goods/category', parmas);
+
+  /*
+   * 分类页初始化信息获取
+   * */
+  public getCatalogInitData = (parmas: any) => instance.get('/catalog/index', parmas);
 }
 export default new Https();
+
 
