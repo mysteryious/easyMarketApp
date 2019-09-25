@@ -1,7 +1,7 @@
 <template>
   <div class="noTabPageContent">
     <div class="header">
-      <div class="left" @click="GoTo">&it;</div>
+      <div class="left" @click="GoTo">&lt;</div>
       <div class="title">奇趣分类</div>
       <div class="right"></div>
     </div>
