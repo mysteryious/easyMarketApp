@@ -3,9 +3,9 @@ import { getocaltion } from '../utils/login';
 
 
 const instance = axios.create({
-  baseURL: 'http://127.0.0.1:8888',
+  baseURL: 'http://169.254.211.106:8888',
   headers: {
-    authorization: getocaltion('token') === null ? '' : getocaltion('token'),
+    'x-nideshop-token': getocaltion('token') === null ? '' : getocaltion('token'),
   },
 });
 

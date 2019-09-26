@@ -11,6 +11,11 @@ export default ({
   mutations: {
   },
   actions: {
+    // 获取专题数据
+    async getTopicData({ state, commit }: any, payload?: any) {
+      const result: any = await http.getTopicData(payload);
+      return result.data;
+    },
     // 根据专题Id获取专题详情
     async getTopicDetail({ commit }: any, payload?: any) {
       const result = await http.getTopicDetail(payload);

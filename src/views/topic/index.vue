@@ -1,7 +1,7 @@
 <template>
-  <div class="box">
+  <div class="topic">
     <div class="main" ref="main">
-      <Scroll>
+      <Scroll :pullingUp="pullingUp" :pullingDown="pullingDown" :list="list">
         <div class="page">
           <div class="download">{{DownloadTitle}}</div>
           <a
@@ -19,7 +19,6 @@
         </div>
       </Scroll>
     </div>
-
     <Footer></Footer>
   </div>
 </template>
@@ -29,75 +28,59 @@ import BScroll from "better-scroll";
 export default {
   props: {},
   data() {
-    return {};
+    return {
+      page: 1,
+      list: {
+        query: {}, //查询条件
+        limit: 5, //每次查询的数量 默认5
+        count: "", //最后一次查询结果返回的长度 用来控制loadMore的显示与否
+        value: [] //查询结果
+      }
+    };
   },
   computed: {
     ...mapState("scroll", [
       "uploadTitle",
       "DownloadTitle",
       "TopicData",
-      "totalPages",
-      "fun"
+      "currentPage"
     ])
   },
   methods: {
-    ...mapMutations("scroll", ["setFun"]),
-    ...mapActions("scroll", ["getTopicData"])
+    ...mapMutations("scroll", ["setFun", "setCurrentPage"]),
+    ...mapActions("scroll", ["getTopicData"]),
+    //上拉加载的函数
+    pullingUp() {
+      this.page = this.page + 1;
+      const size = this.page * this.list.limit;
+
+      this.list = {
+        query: { params: { page: this.page, size, type: "pullingUp" } }, //查询条件
+        limit: 5, //每次查询的数量 默认5
+        count: size, //最后一次查询结果返回的长度 用来控制loadMore的显示与否
+        value: [] //查询结果
+      };
+
+    },
+    //下拉刷新的函数
+    pullingDown() {
+      this.page = this.page + 1;
+      const size = this.page * this.list.limit;
+      this.setCurrentPage(this.page);
+      this.getTopicData({
+        params: { page: this.page, size, type: "pullingDown" }
+      });
+    }
   },
   created() {
     this.setFun("getTopicData");
 
     !this.TopicData.length &&
-      this.getTopicData({
-        params: { page: this.page, type: "" }
-      });
+      this.getTopicData({ params: { page: this.currentPage, type: "" } });
   },
   mounted() {}
 };
 </script>
 <style lang="scss">
-a {
-  text-decoration: none;
-  outline: none;
-}
-.box {
-  display: flex;
-  flex-direction: column;
-  font-size: 14px;
-}
-.main {
-  flex: 1;
-  overflow: hidden;
-}
-.topicItem {
-  display: block;
-  height: 3rem;
-  img {
-    width: 100%;
-    height: 2rem;
-  }
-  div {
-    font-size: 0.14rem;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    height: 0.3rem;
-    line-height: 0.3rem;
-  }
-}
-.download {
-  margin-top: -0.44rem;
-  height: 0.44rem;
-  background-color: #f5f5f9;
-  line-height: 0.44rem;
-  text-align: center;
-}
-.upload {
-  height: 0.44rem;
-  background-color: #f5f5f9;
-  line-height: 0.44rem;
-  text-align: center;
-  margin-top: 0.44rem;
-}
+@import "./index.scss";
 </style>
