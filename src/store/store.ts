@@ -6,6 +6,8 @@ import home from './home/index';
 import topic from './main/topic';
 import catelog from './main/catelog';
 import categorys from './main/categorys';
+import brandDetail from './main/brandDetail';
+import goods from './main/goods';
 
 Vue.use(Vuex);
 
@@ -16,6 +18,8 @@ export default new Vuex.Store({
     home,
     catelog,
     categorys,
+    brandDetail,
+    goods,
   },
 });
 

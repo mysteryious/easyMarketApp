@@ -45,6 +45,16 @@ export default [
     component: () => import ('../views/topicCommentWrite/index.vue'),
   },
   {
+    name: 'brandDetail',
+    path: '/brandDetail/:id',
+    component: () => import ('../views/brandDetail/index.vue'),
+  },
+  {
+    name: 'goods',
+    path: '/goods/:id',
+    component: () => import ('../views/goods/index.vue'),
+  },
+  {
     path: '/',
     redirect: '/login',
   },
