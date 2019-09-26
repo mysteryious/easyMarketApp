@@ -1,7 +1,10 @@
 <template>
   <div class="box">
     <div class="main">
-      <Swiper :bannerData="HomeData.banner"></Swiper>
+      <div class="container">
+        <Swiper :bannerData="HomeData.banner"></Swiper>
+      </div>
+      
       <div class="channelWrap">
         <a  
         v-for="(item,index) in HomeData.channel" 
@@ -29,7 +32,7 @@
       <div class="hotGoodsBox">
         <div class="hotGoodsTitle">人气推荐</div>
         <div class="hotGoodsWrap">
-          <a class="hotGoodsItem" v-for="(item,index) in HomeData.hotGoodsList" :key="index">
+          <a class="hotGoodsItem" v-for="(item,index) in HomeData.hotGoodsList" :key="index" :href="'goods/'+item.id">
             <img class="imgLazyload loadEnd" v-lazy="item.list_pic_url" alt />
             <div class="hotGoodsInfos">
               <div class="hotGoodsName">{{item.name}}</div>
@@ -92,7 +95,7 @@ export default {
       }
     };
   },
-  components: {
+  components: {  
     Swiper,
     swiper,
     swiperSlide
@@ -122,6 +125,11 @@ export default {
   flex: 1;
   background: #eee;
   overflow: auto;
+  .container{
+    width: 100%;
+    height: 2rem;
+    border-bottom: 1px solid #eee;
+  }
   .channelWrap {
     width: 100%;
     height: 0.7rem;

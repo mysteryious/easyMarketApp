@@ -16,5 +16,11 @@ export default ({
       const result = await http.getGoodsDetail(payload);
       return result.data;
     },
+    // 相关商品
+    async getGoodsRelated({ commit }: any, payload?: any) {
+      const result = await http.getGoodsRelated(payload);
+      return result.data;
+    },
+
   },
 });

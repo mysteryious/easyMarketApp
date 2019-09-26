@@ -5,6 +5,7 @@ import Tab from '../tab/index.vue';
 import ListEl from '../ListEl/index.vue';
 import CateGoryBox from '../cateGoryBox/index.vue';
 import GoodsList from '../goodsList/index.vue';
+import Swiper from '../swiper/index.vue';
 const install = (Vue: any) => {
   Vue.component('Header', Header);
   Vue.component('Footer', Footer);
@@ -14,6 +15,7 @@ const install = (Vue: any) => {
   Vue.component('ListEl', ListEl);
   Vue.component('CateGoryBox', CateGoryBox);
   Vue.component('GoodsList', GoodsList);
+  Vue.component('Swiper', Swiper);
 };
 
 export default install;

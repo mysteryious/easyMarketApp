@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="goodsItemImg">
-            <img :src="GoodsItem.list_pic_url" alt="">
+            <img v-lazy="GoodsItem.list_pic_url" alt="" >
         </div>  
         <div class="goodsItemName">{{GoodsItem.name}}</div>
         <div class="goodsItemPrice">￥{{GoodsItem.retail_price}}</div>

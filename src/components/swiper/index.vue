@@ -2,7 +2,8 @@
   <div class="swiper-container">
     <swiper :options="swiperOption">
       <swiper-slide v-for="(item,index) in bannerData" :key="index">
-        <img :src="item.image_url" alt />
+        <img v-if="item.image_url" v-lazy="item.image_url" alt />
+        <img v-if="item.img_url" v-lazy="item.img_url" alt />
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>

@@ -3,7 +3,7 @@
     <div v-for="(item) in cateGoryData" :key="item.id">
       <div class="cateGoryName">{{item.name}}</div>
       <div class="cateGoryGoodsWrap">
-        <a v-for="(el) in item.goodsList" :key="el.id">
+        <a v-for="(el) in item.goodsList" :key="el.id" :href="'goods/'+el.id">
           <GoodsList :GoodsItem="el"></GoodsList>
         </a>
         <a :href="'/categorys/'+item.id" class="categoryMoreGoods">

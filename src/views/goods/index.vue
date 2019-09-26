@@ -1,10 +1,12 @@
 <template>
   <div class="noTabPageContent">
     <div class="header">
-      <Header title="{你是}"></Header>
+      <Header :title="info.name"></Header>
     </div>
     <!-- 轮播图 -->
-    <div class="swiper">轮播图</div>
+    
+      <Swiper :bannerData="gallery"></Swiper>
+    
 
     <ul class="serviceList">
       <li>
@@ -23,6 +25,45 @@
       <div class="goodsNameSubTitle">{{info.goods_brief}}</div>
       <div class="goodsPriceTitle">￥{{info.retail_price}}</div>
     </div>
+
+    <div class="goodsSize">
+      <div></div>
+      <div>x&nbsp;{{comment.count}}</div>
+      <div>选择规格></div>
+    </div>
+
+    <div class="goodsAttribute">
+      <div class="goodsAttributeLine">—&nbsp;商品参数&nbsp;—</div>
+      <div class="goodsAttributeList">
+        <div class="goodsAttributeItem" v-for="(item) in attribute" :key="item.id">
+          <div class="attributeLabel">{{item.name}}</div>
+          <div class="attributeContent">{{item.value}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="topicDetailImg" v-html="info.goods_desc"></div>
+
+    <div class="goodsAttribute">
+      <div class="goodsAttributeLine">—&nbsp;常见问题&nbsp;—</div>
+      <div class="problemWrap" v-for="(item) in issue" :key="item.id">
+        <div class="problemLabel">
+          <span>√</span>
+          {{item.question}}
+        </div>
+        <div class="problemContent">{{item.answer}}</div>
+      </div>
+    </div>
+    <div class="goodsAttribute">
+      <div class="goodsAttributeLine">—&nbsp;大家都在看&nbsp;—</div>
+    </div>
+    
+    <div class="goodsList">
+      <a  class="goodsItem" v-for="(item) in goodsList" :key="item.id" :href="item.id">
+        <GoodsList :GoodsItem="item"></GoodsList>
+      </a>
+    </div>
+
 
     <div class="goodsPageDo">
       <div class="isLike like">★</div>
@@ -44,12 +85,17 @@ export default {
   data() {
     return {
       GoodsData: {},
-      info: {}
+      info: {},
+      comment: {},
+      attribute: [],
+      issue: [],
+      goodsList: [],
+      gallery:[]
     };
   },
   computed: {},
   methods: {
-    ...mapActions("goods", ["getGoodsDetail"])
+    ...mapActions("goods", ["getGoodsDetail", "getGoodsRelated"])
   },
   created() {},
   mounted() {
@@ -57,7 +103,14 @@ export default {
     this.getGoodsDetail({ params: { id: id } }).then(res => {
       console.log(res);
       this.info = res.info;
-      //   this.GoodsData = res
+      this.comment = res.comment;
+      this.attribute = res.attribute;
+      this.issue = res.issue;
+      this.gallery = res.gallery
+    });
+    this.getGoodsRelated({ params: { id: id } }).then(res => {
+      console.log(res);
+      this.goodsList = res.goodsList;
     });
   }
 };
@@ -66,8 +119,10 @@ export default {
 .noTabPageContent {
   font-size: 0.14rem;
   width: 100%;
-  height: 100%;
-  padding-bottom: 0.5rem;
+  min-height: 100%;
+  padding-bottom: .5rem;
+  padding-top: 0.52rem;
+  background: #f4f4f4;
   .header {
     position: fixed;
     top: 0;
@@ -100,6 +155,10 @@ export default {
       justify-content: center;
       align-items: center;
       color: #2196f3;
+      span{
+        color: red;
+        font-weight: 800;
+      }
     }
     .addCart,
     .payGoods {
@@ -117,14 +176,9 @@ export default {
       background: linear-gradient(90deg, #1d62f0, #19d5fd);
     }
   }
-
-  .swiper {
-    width: 100%;
-    height: 3.5rem;
-    background: red;
-    color: #fff;
-    box-sizing: border-box;
-    margin-top: 0.5rem;
+  .swiper-container{
+    // height: auto;
+    min-height: 3.5rem;
   }
 
   .serviceList {
@@ -152,7 +206,7 @@ export default {
     .goodsNameTitle {
       font-size: 0.2rem;
       text-align: center;
-      padding-bottom: 0.1rem;
+      padding-bottom: 0.05rem;
     }
     .goodsNameSubTitle {
       font-size: 0.15rem;
@@ -167,14 +221,116 @@ export default {
       line-height: 0.5rem;
     }
   }
+
+  .goodsSize {
+    margin-top: 0.01rem;
+    height: 0.5rem;
+    padding: 0 0.2rem;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    div:nth-child(1) {
+      flex: 1;
+      text-align: left;
+      color: #2196f3;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    div:nth-child(3) {
+      width: auto;
+      padding: 0 0.05rem;
+      text-align: right;
+    }
+    div:nth-child(2) {
+      color: red;
+      font-weight: bolder;
+      width: auto;
+      padding: 0 0.05rem;
+      text-align: right;
+    }
+  }
+  .goodsAttribute {
+    margin-top: 0.1rem;
+    padding: 0.2rem;
+    background: white;
+    .goodsAttributeLine {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #2196f3;
+      padding: 0.05rem 0;
+    }
+    .goodsAttributeList .goodsAttributeItem {
+      display: flex;
+      align-items: center;
+      line-height: 0.4rem;
+      background: #dcdfe6;
+      margin-top: 0.05rem;
+      .attributeLabel {
+        width: 1rem;
+        color: gray;
+        padding: 0 0.05rem;
+        font-size: 0.16rem;
+        text-align: center;
+      }
+      .attributeContent {
+        flex: 1;
+        font-size: 0.15rem;
+        line-height: 0.3rem;
+        padding: 0 0.05rem;
+      }
+    }
+  }
+  .topicDetailImg {
+    p {
+      padding: 0;
+      margin: 0;
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+    }
+  }
+
+  .problemWrap {
+    margin-bottom: 0.1rem;
+    .problemLabel {
+      font-size: 0.16rem;
+      line-height: 0.3rem;
+      span {
+        color: red;
+        margin-right: 0.05rem;
+      }
+    }
+    .problemContent {
+      font-size: 0.15rem;
+      line-height: 0.25rem;
+      color: gray;
+    }
+  }
+  .goodsAttributeLine {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #2196f3;
+    padding: 0.05rem 0;
+  }
+  .goodsList {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    .goodsItem {
+      width: 50%;
+      height: auto;
+      background: white;
+      padding: 0.1rem;
+      position: relative;
+      
+    }
+  }
 }
-// p{
-//     padding: 0;
-//     margin: 0;
-//     img{
-//         width: 100%;
-//         height: auto;
-//         display: block;
-//     }
-//   }
 </style>

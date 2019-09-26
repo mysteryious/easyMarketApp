@@ -45,6 +45,7 @@ export default {
   justify-content: center;
   align-items: center;
   z-index: 10;
+  font-size: .16rem;
   b {
     flex: 1;
     font-size: 17px;

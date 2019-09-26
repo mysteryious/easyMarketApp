@@ -19,8 +19,8 @@
         </div>
         <!-- 列表 -->
         <div class="subCategory">
-          <a class="subCategoryItem" v-for="list in currentCategory.subCategoryList" :key="list.id">
-            <img v-lazy="list.wap_banner_url" alt />
+          <a class="subCategoryItem" v-for="list in currentCategory.subCategoryList" :key="list.id" :href="'/categorys/'+list.id">
+            <img v-lazy="list.wap_banner_url" alt />  
             <div class="subCategoryItemName">{{list.name}}</div>
           </a>
         </div>

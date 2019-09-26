@@ -74,6 +74,11 @@ class Https {
    * 获取商品详情
    */
   public getGoodsDetail = (parmas: any) => instance.get('/goods/detail', parmas);
+
+  /**
+   * 相关商品
+   */
+  public getGoodsRelated = (parmas: any) => instance.get('/goods/related', parmas);
 }
 export default new Https();
 
