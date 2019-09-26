@@ -1,5 +1,5 @@
 <template>
-  <div class="topic">
+  <div class="topicdetail">
     <Header :title="topicDetail.title"></Header>
     <main class="main">
       <div class="main-pic" v-html="this.topicDetail.content"></div>

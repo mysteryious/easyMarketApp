@@ -2,28 +2,56 @@
   <div class="App">
     <Header title="填写留言"></Header>
     <div class="textAreaContent" maxlength="80">
-      <textarea class="inputArea"></textarea>
+      <textarea class="inputArea" v-model="content"></textarea>
     </div>
-    <div class="buttons">
-      <div>清空</div>
-      <div>留言</div>
+    <div class="btns">
+      <div v-if="content.length" class="am-button">
+        <a href>{{button}}</a>
+      </div>
+      <div v-else @click="remove"></div>
+      <div class="am-button-primary" @click="addComment">
+        <a :href="'/topicDetail/'+ this.$route.params.id">留言</a>
+      </div>
     </div>
   </div>
 </template>
 <script>
 import { mapActions } from "vuex";
 export default {
-  methods: {
-    ...mapActions("topic", ["postSetComment"])
+  data() {
+    return {
+      content: "",
+      button: ""
+    };
   },
-  mounted() {
-    //获取数据
-    this.postSetComment({ params: { page: 1, size: 100 } }).then(res => {
-      this.topicData = res.data;
-    });
-  }
+  computed: {},
+  watch: {
+    content(newValue) {
+      if (newValue.length) {
+        this.button = "清空";
+      } else {
+        this.button = "";
+      }
+    }
+  },
+  methods: {
+    ...mapActions("topic", ["postSetComment"]),
+    addComment() {
+      this.postSetComment({
+        content: this.content,
+        typeId: 1,
+        valueId: this.$route.params.id
+      }).then(res => {
+        console.log(res);
+      });
+    },
+    remove() {
+      this.content = "";
+    }
+  },
+  mounted() {}
 };
 </script>
-<style scoped>
-@import "./index.scss"
+<style lang="scss">
+@import "./index.scss";
 </style>

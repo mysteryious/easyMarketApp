@@ -6,6 +6,9 @@ class Https {
  *   mobile: 电话号码
  *   password: 密码
  * */
+  // constructor() {
+
+  // }
   public postLogin = (parmas: any) => instance.post('/auth/loginByMobile', parmas);
   /*
   *  获取专题数据
