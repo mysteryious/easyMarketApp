@@ -10,8 +10,8 @@ export default ({
     uploadTitle: '上拉加载',
     DownloadTitle: '下拉刷新',
     TopicData: [], // 专题页列表
-    totalPages: 0, // 总页数
-    currentPage: 1, // 当前页
+    count: 0, // 总的数据长度
+    xianzhi: 0, // 当前数据的长度
     fun: '',
   },
   mutations: {
@@ -24,13 +24,13 @@ export default ({
     setDownloadTitle(state: any, payload: any) {
       state.DownloadTitle = payload;
     },
-    setCurrentPage(state: any, payload: any) {
-      state.currentPage = payload;
+    setSize(state: any, payload: any) {
+      state.size = payload;
     },
     initData(state: any, payload: any) {
-      const { TopicData, totalPages, currentPage, type } = payload;
-
-      state.totalPages = totalPages;
+      const { TopicData, count, page, size, type } = payload;
+      state.count = count;
+      state.xianzhi = page * size;
       switch (type) {
         // 上拉加载 拼接数据
         case 'pullingUp':
@@ -52,12 +52,13 @@ export default ({
     async getTopicData({ state, commit }: any, payload?: any) {
       // 应该判断一下执行什么请求获取数据
       const result: any = await http[state.fun](payload);
-
       if (result.errno === 0) {
         commit('initData',
           {
             TopicData: result.data.data,
-            totalPages: result.data.totalPages,
+            count: result.data.count,
+            page: payload.params.page,
+            size: payload.params.size,
             type: payload.params.type,
           });
       }

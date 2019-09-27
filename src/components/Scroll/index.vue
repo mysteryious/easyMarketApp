@@ -7,51 +7,58 @@
 import BScroll from "better-scroll";
 import { mapState, mapMutations, mapActions } from "vuex";
 
-// @props {
-//  *   list: {
-//  *     query?: {[key:string]:any}, 查询条件
-//  *     limit?: number, 每次查询的数量 默认10
-//  *     count: number, 最后一次查询结果返回的长度 用来控制loadMore的显示与否
-//  *     refreshDispatch?: string pull-refresh 查询的store dispacthName, 当需要下拉刷新的时候才传
-//  *     loadMoreDispatch: string loadMore 查询的store dispacthName
-//  *     value: Array<{[key:string]:any}> 查询结果
-//  *   }
-//  * }
-
 export default {
   props: {
-    pullingUp: Function,
-    pullingDown: Function,
+    pullingUp: {
+      type: Function,
+      default: () => {}
+    },
+    pullingDown: {
+      type: Function,
+      default: () => {}
+    },
     list: {
-      query: Object, //查询条件
-      limit: Number, //每次查询的数量 默认10
-      count: Number, //最后一次查询结果返回的长度 用来控制loadMore的显示与否
-      refreshDispatch: String, //触发请求的函数名
-      value: Array //查询结果
+      xianzhi: {
+        type: Number,
+        default: 5
+      }, //每次查询的数量 默认5
+      query: {
+        type: Object,
+        default: {}
+      }, //查询条件
+      limit: {
+        type: Number,
+        default: 5
+      }, //每次查询的数量 默认5
+      refreshDispatch: {
+        type: String,
+        default: ""
+      }, //触发请求的函数名
+      value: {
+        type: Array,
+        default: []
+      } //查询结果
     }
   },
-  data() {
-    return {};
-  },
   computed: {
-    ...mapState("scroll", [
-      "uploadTitle",
-      "DownloadTitle",
-      "totalPages",
-      "currentPage"
-    ])
+    ...mapState("scroll", ["uploadTitle", "DownloadTitle", "count"])
   },
   methods: {
     ...mapMutations("scroll", [
       "setFun",
       "setUploadTitle",
       "setDownloadTitle",
-      "setCurrentPage"
     ]),
     ...mapActions("scroll", ["getTopicData"])
   },
-  created() {
+  watch: {
+    deep: true,
+    list(oldvalue) {
+      this.setFun(oldvalue.refreshDispatch);
+      this.getTopicData(oldvalue.query);
+    }
   },
+  created() {},
   mounted() {
     this.scroll = new BScroll(this.$refs.tabPageContent, {
       click: true,
@@ -74,7 +81,7 @@ export default {
     this.scroll.on("pullingUp", () => {
       this.setUploadTitle("正在加载......");
       //如果小于总页数就发起请求
-      if (this.currentPage < this.totalPages) {
+      if (this.list.xianzhi < this.count) {
         setTimeout(() => {
           this.setUploadTitle("上拉加载");
           try {
@@ -89,18 +96,22 @@ export default {
       }
     });
 
-    // this.scroll.on("pullingDown", () => {
-    //   this.setDownloadTitle("正在刷新......");
-    //   if (this.currentPage < this.totalPages) {
-    //     setTimeout(() => {
-    //       this.setDownloadTitle("刷新成功");
-    //       this.pullingDown();
-    //       this.scroll.finishPullDown();
-    //     }, 2000);
-    //   } else {
-    //     this.setDownloadTitle("暂无数据...");
-    //   }
-    // });
+    this.scroll.on("pullingDown", () => {
+      this.setDownloadTitle("正在刷新......");
+      if (this.list.xianzhi < this.count) {
+        setTimeout(() => {
+          this.setDownloadTitle("刷新成功");
+          try {
+            this.pullingDown();
+          } catch (error) {
+            console.log(error);
+          }
+          this.scroll.finishPullDown();
+        }, 2000);
+      } else {
+        this.setDownloadTitle("暂无数据...");
+      }
+    });
   }
 };
 </script>
@@ -108,5 +119,20 @@ export default {
 .tabPageContent {
   width: 100%;
   height: 100%;
+  position: relative;
+}
+.download {
+  margin-top: -0.44rem;
+  height: 0.44rem;
+  background-color: #f5f5f9;
+  line-height: 0.44rem;
+  text-align: center;
+}
+.upload {
+  height: 0.44rem;
+  background-color: #f5f5f9;
+  line-height: 0.44rem;
+  text-align: center;
+  margin-top: 0.44rem;
 }
 </style>
