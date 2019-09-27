@@ -26,6 +26,7 @@ export default {
       query: Object, //查询条件
       limit: Number, //每次查询的数量 默认10
       count: Number, //最后一次查询结果返回的长度 用来控制loadMore的显示与否
+      refreshDispatch: String, //触发请求的函数名
       value: Array //查询结果
     }
   },
@@ -41,7 +42,15 @@ export default {
     ])
   },
   methods: {
-    ...mapMutations("scroll", ["setUploadTitle", "setDownloadTitle"])
+    ...mapMutations("scroll", [
+      "setFun",
+      "setUploadTitle",
+      "setDownloadTitle",
+      "setCurrentPage"
+    ]),
+    ...mapActions("scroll", ["getTopicData"])
+  },
+  created() {
   },
   mounted() {
     this.scroll = new BScroll(this.$refs.tabPageContent, {
@@ -67,10 +76,12 @@ export default {
       //如果小于总页数就发起请求
       if (this.currentPage < this.totalPages) {
         setTimeout(() => {
-          this.setUploadTitle("上拉加载");          
-          this.setCurrentPage(this.page);
-          this.getTopicData(this.list.query);
-
+          this.setUploadTitle("上拉加载");
+          try {
+            this.pullingUp();
+          } catch (error) {
+            console.log(error);
+          }
           this.scroll.finishPullUp();
         }, 2000);
       } else {
@@ -78,18 +89,18 @@ export default {
       }
     });
 
-    this.scroll.on("pullingDown", () => {
-      this.setDownloadTitle("正在刷新......");
-      if (this.currentPage < this.totalPages) {
-        setTimeout(() => {
-          this.setDownloadTitle("刷新成功");
-          this.pullingDown();
-          this.scroll.finishPullDown();
-        }, 2000);
-      } else {
-        this.setDownloadTitle("暂无数据...");
-      }
-    });
+    // this.scroll.on("pullingDown", () => {
+    //   this.setDownloadTitle("正在刷新......");
+    //   if (this.currentPage < this.totalPages) {
+    //     setTimeout(() => {
+    //       this.setDownloadTitle("刷新成功");
+    //       this.pullingDown();
+    //       this.scroll.finishPullDown();
+    //     }, 2000);
+    //   } else {
+    //     this.setDownloadTitle("暂无数据...");
+    //   }
+    // });
   }
 };
 </script>

@@ -65,7 +65,7 @@
       </div>
       <!-- cateGoryBox -->
       <CateGoryBox :cateGoryData="HomeData.categoryList"></CateGoryBox>
-    </main>
+    </div>
     <Footer></Footer>
   </div>
 </template>
@@ -114,5 +114,5 @@ export default {
 };
 </script>
 <style lang="scss">
-@import "./index.scss"
+@import "./index.scss";
 </style>

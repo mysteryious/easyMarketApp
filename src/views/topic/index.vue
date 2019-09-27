@@ -1,7 +1,7 @@
 <template>
   <div class="topic">
     <div class="main" ref="main">
-      <Scroll :pullingUp="pullingUp" :pullingDown="pullingDown" :list="list">
+      <Scroll :pullingUp="pullingUp" :list="list">
         <div class="page">
           <div class="download">{{DownloadTitle}}</div>
           <a
@@ -34,7 +34,7 @@ export default {
         query: {}, //查询条件
         limit: 5, //每次查询的数量 默认5
         count: "", //最后一次查询结果返回的长度 用来控制loadMore的显示与否
-        value: [] //查询结果
+        refreshDispatch: "" //查询结果
       }
     };
   },
@@ -53,28 +53,27 @@ export default {
     pullingUp() {
       this.page = this.page + 1;
       const size = this.page * this.list.limit;
-
       this.list = {
         query: { params: { page: this.page, size, type: "pullingUp" } }, //查询条件
         limit: 5, //每次查询的数量 默认5
         count: size, //最后一次查询结果返回的长度 用来控制loadMore的显示与否
-        value: [] //查询结果
+        refreshDispatch: "getTopicData"
       };
-
-    },
-    //下拉刷新的函数
-    pullingDown() {
-      this.page = this.page + 1;
-      const size = this.page * this.list.limit;
-      this.setCurrentPage(this.page);
-      this.getTopicData({
-        params: { page: this.page, size, type: "pullingDown" }
-      });
+      this.setFun(this.list.refreshDispatch);
+      this.getTopicData(this.list.query);
     }
+    // // //下拉刷新的函数
+    // pullingDown() {
+    //   this.page = this.page + 1;
+    //   const size = this.page * this.list.limit;
+    //   this.setCurrentPage(this.page);
+    //   this.getTopicData({
+    //     params: { page: this.page, size, type: "pullingDown" }
+    //   });
+    // }
   },
   created() {
     this.setFun("getTopicData");
-
     !this.TopicData.length &&
       this.getTopicData({ params: { page: this.currentPage, type: "" } });
   },
