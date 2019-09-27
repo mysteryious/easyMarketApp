@@ -29,12 +29,13 @@ export default {
   props: {},
   data() {
     return {
-      page: 1,
       list: {
         query: {}, //查询条件
+        page: 1,
         limit: 5, //每次查询的数量 默认5
         count: "", //最后一次查询结果返回的长度 用来控制loadMore的显示与否
-        value: [] //查询结果
+        xianzhi: 5,
+        refreshDispatch: "" //要发起请求的函数名 http请求
       }
     };
   },
@@ -47,36 +48,53 @@ export default {
     ])
   },
   methods: {
-    ...mapMutations("scroll", ["setFun", "setCurrentPage"]),
+    ...mapMutations("scroll", ["setFun"]),
     ...mapActions("scroll", ["getTopicData"]),
     //上拉加载的函数
     pullingUp() {
-      this.page = this.page + 1;
-      const size = this.page * this.list.limit;
+      this.list.page = this.list.page + 1;
+      this.list.xianzhi = this.list.page * this.list.limit;
 
       this.list = {
-        query: { params: { page: this.page, size, type: "pullingUp" } }, //查询条件
+        query: {
+          params: {
+            page: this.list.page,
+            size: this.list.limit,
+            type: "pullingUp"
+          }
+        }, //查询条件
         limit: 5, //每次查询的数量 默认5
-        count: size, //最后一次查询结果返回的长度 用来控制loadMore的显示与否
-        value: [] //查询结果
+        page: this.list.page,
+        xianzhi: this.list.xianzhi,
+        refreshDispatch: "getTopicData"
       };
-
     },
     //下拉刷新的函数
     pullingDown() {
-      this.page = this.page + 1;
-      const size = this.page * this.list.limit;
-      this.setCurrentPage(this.page);
-      this.getTopicData({
-        params: { page: this.page, size, type: "pullingDown" }
-      });
+      this.list.page = this.list.page + 1;
+      this.list.xianzhi = this.list.page * this.list.limit;
+
+      this.list = {
+        query: {
+          params: {
+            page: this.list.page,
+            size: this.list.limit,
+            type: "pullingDown"
+          }
+        }, //查询条件
+        limit: 5, //每次查询的数量 默认5
+        page: this.list.page,
+        xianzhi: this.list.xianzhi,
+        refreshDispatch: "getTopicData"
+      };
     }
   },
   created() {
     this.setFun("getTopicData");
-
     !this.TopicData.length &&
-      this.getTopicData({ params: { page: this.currentPage, type: "" } });
+      this.getTopicData({
+        params: { page: 1, size: this.list.limit, type: "" }
+      });
   },
   mounted() {}
 };
