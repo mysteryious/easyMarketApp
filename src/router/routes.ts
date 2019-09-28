@@ -15,6 +15,11 @@ export default [
     component: () => import('../views/catelog/index.vue'),
   },
   {
+    name: '模糊搜索',
+    path: '/goodsSearch',
+    component: () => import('../views/goodsSearch/index.vue'),
+  },
+  {
     name: '购物车',
     path: '/cart',
     component: () => import('../views/cart/index.vue'),
