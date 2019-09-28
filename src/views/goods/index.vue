@@ -140,7 +140,6 @@ export default {
   mounted() {
     let id = this.$route.params.id;
     this.getGoodsDetail({ params: { id: id } }).then(res => {
-      console.log(res);
       this.info = res.info;
       this.comment = res.comment;
       this.attribute = res.attribute;
@@ -148,7 +147,6 @@ export default {
       this.gallery = res.gallery;
     });
     this.getGoodsRelated({ params: { id: id } }).then(res => {
-      console.log(res);
       this.goodsList = res.goodsList;
     });
     

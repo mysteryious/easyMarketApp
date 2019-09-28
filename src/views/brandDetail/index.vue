@@ -8,7 +8,7 @@
             <div class="breadDesc">{{brand.simple_desc}}</div>
         </div>
         <div class="goodsList">
-            <a href="" class="goodsItem" v-for="(item) in goodsList" :key="item.id" >
+            <a  class="goodsItem" v-for="(item) in goodsList" :key="item.id" :href="'/goods/'+item.id">
                 <GoodsList :GoodsItem="item"></GoodsList>
             </a>
         </div>

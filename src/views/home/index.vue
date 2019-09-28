@@ -65,7 +65,7 @@
       </div>
       <!-- cateGoryBox -->
       <CateGoryBox :cateGoryData="HomeData.categoryList"></CateGoryBox>
-    </div>
+    </main>
     <Footer></Footer>
   </div>
 </template>
