@@ -144,6 +144,13 @@
       "font_class": "richeng",
       "unicode": "e548",
       "unicode_decimal": 58696
+    },
+    {
+      "icon_id": "10300689",
+      "name": "Delete Item CC And M",
+      "font_class": "delete",
+      "unicode": "e502",
+      "unicode_decimal": 58626
     }
   ]
 }

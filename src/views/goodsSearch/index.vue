@@ -7,28 +7,50 @@
         <i></i>
         <input type="text" :placeholder="placeholder" v-model="value" @change="findSearch" />
       </span>
-      <div>取消</div>
+      <div @click="cancelSearch">取消</div>
     </header>
     <main class="main">
       <!-- 热门搜索列表 -->
-      <div class="searchMsg">
-        <div class="searchItemWrap">
+      <div class="searchMsg" v-if="!value&&!searchKeyWordList.length">
+        <div class="searchMsg" v-if="historyKeywordList.length>0">
+          <div class="searchItemWrap">
+            <div class="title">
+              历史记录
+              <i class="iconfont icon-delete" @click="deleteHistory"></i>
+            </div>
+            <div class="listWrap">
+              <button
+                class="listItem"
+                v-for="(list,index) in historyKeywordList"
+                :key="index"
+              >{{list}}</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 如果input框没有值显示热门搜索 -->
+        <div class="searchItemWrap" v-if="!value">
           <div class="title">热门搜索</div>
           <div class="listWrap">
             <button
-              class="listItem active"
-              v-for="(list,index) in hotKeywordList"
-              :key="index"
-            >{{list.keyword}}</button>
+              v-for="(item) in hotKeywordList"
+              :key="item.keyword"
+              :class="item.is_hot? 'listItem active' : 'listItem'"
+            >{{item.keyword}}</button>
           </div>
         </div>
       </div>
-    </main>
 
+      <!-- 显示模糊查询列表 -->
+      <div class="searchList" v-if="value">
+        <li class="searchItem" v-for="(list,index) in searchKeyWordList" :key="index">{{list}}</li>
+      </div>
+    </main>
   </div>
 </template>
 
 <script>
+import "../../static/font/iconfont";
 import { mapState, mapMutations, mapActions } from "vuex";
 export default {
   name: "Header",
@@ -54,24 +76,43 @@ export default {
     title: String
   },
   watch: {
+    // input值改变，查询模糊查询，修改查询字段
     value(newValue) {
-      console.log(newValue);
+      if (newValue) {
+        this.getGoodsSearchKey({ params: { keyword: newValue } }).then(res => {
+          this.historyKeywordList = res;
+        });
+      }
     }
   },
   methods: {
-    ...mapActions("goodsSearch", ["getGoodsSearchMsg", "getGoodsSearchKey"]),
+    ...mapActions("goodsSearch", [
+      "getGoodsSearchMsg",
+      "getGoodsSearchKey",
+      "getDeleteGoodsSearchHistory"
+    ]),
     replace() {
       this.$router.history.go(-1);
     },
     findSearch() {
       this.getGoodsSearchKey({ params: { keyword: this.value } }).then(res => {
-        console.log(res)
-        this.searchKeyWordList = res.data;
+        this.searchKeyWordList = res;
       });
-    }
-  },
-  mounted() {
-    try {
+    },
+    /*删除历史*/
+    async deleteHistory() {
+      try {
+        await this.getDeleteGoodsSearchHistory({});
+        this.initData();
+      } catch (e) {
+        throw e;
+      }
+    },
+    cancelSearch() {
+      this.searchKeyWordList = [];
+      this.value = "";
+    },
+    initData() {
       this.getGoodsSearchMsg().then(res => {
         const {
           defaultKeyword: { keyword },
@@ -81,8 +122,12 @@ export default {
         this.placeholder = keyword;
         this.historyKeywordList = historyKeywordList;
         this.hotKeywordList = hotKeywordList;
-        console.log(res);
       });
+    }
+  },
+  mounted() {
+    try {
+      this.initData();
     } catch (e) {
       throw e;
     }

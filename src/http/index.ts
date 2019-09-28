@@ -91,6 +91,12 @@ class Https {
    *  keyword: 查询名称
    * */
   public getGoodsSearchKey = (parmas = {}) => instance.get('/search/helper', parmas);
+  /*
+  * 删除商品查询的历史记录
+  * parmas: {}
+  * */
+  public getDeleteGoodsSearchHistory = () => instance.get('/search/clearhistory');
+
 
 }
 

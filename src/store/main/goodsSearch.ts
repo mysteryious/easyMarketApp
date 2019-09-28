@@ -20,5 +20,9 @@ export default ({
       const result = await http.getGoodsSearchKey(payload);
       return result.data;
     },
+    async getDeleteGoodsSearchHistory({ commit }: any) {
+      const result = await http.getDeleteGoodsSearchHistory();
+      return result.data;
+    },
   },
 });

@@ -45,7 +45,7 @@
     height: auto;
     background: white;
 }
-
+//热搜列表
 .searchItemWrap {
     width: 100%;
     height: auto;
@@ -58,6 +58,10 @@
         height: 0.35rem;
         font-size: 0.15rem;
         line-height: 0.35rem;
+        i {
+          font-size: .13rem;
+          float: right;
+      }
     }
     .listWrap {
         @include juzuo;
@@ -79,9 +83,22 @@
             margin-right: 0.04rem;
             margin-bottom: 0.04rem;
         }
-        button:nth-child(1) {
+        .listItem.active{
             color: red;
             border-color: red;
         }
+    }
+}
+//模糊查询列表
+.searchList {
+    width: 100%;
+    background: white;
+    padding: 0.1rem 0.1rem 0.1rem 0.1rem;
+    .searchItem {
+        height: 0.35rem;
+        line-height: 0.35rem;
+        text-align: left;
+        position: relative;
+        border-bottom: 1px solid gainsboro;
     }
 }
