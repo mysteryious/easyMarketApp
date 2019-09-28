@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="cart">
     <div class="main">
       <ul class="serviceList">
         <li>

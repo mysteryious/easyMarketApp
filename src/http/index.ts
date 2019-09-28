@@ -49,13 +49,10 @@ class Https {
     *   id: 专题id
     * */
   public getTopicDetailRelated = (parmas: any) => instance.get('/topic/related', parmas);
-
-
   /*
     * 分类页初始化信息获取
     * */
   public getCatalogInitData = (parmas: any) => instance.get('/catalog/index', parmas);
-
   /*
    * 根据分类ID获取当前分类信息和子分类
    * parmas:
@@ -63,7 +60,6 @@ class Https {
    * */
   public getCatalogMsg = (parmas: any) => instance.get('/catalog/current', parmas);
   public getCategoryNavData = (parmas: any) => instance.get('/goods/category', parmas);
-
   /**
    * // 根据分类Id或者制造商Id获取商品
    */
@@ -77,12 +73,27 @@ class Https {
    * 获取商品详情
    */
   public getGoodsDetail = (parmas: any) => instance.get('/goods/detail', parmas);
-
   /**
    * 相关商品
    */
   public getGoodsRelated = (parmas: any) => instance.get('/goods/related', parmas);
+
+  /*
+   * 获取商品查询的相关信息
+   * 模糊搜索
+   * parmas: {}
+   * */
+  public getGoodsSearchMsg = (parmas = {}) => instance.get('/search/index', parmas);
+
+  /*
+   * 商品查询模糊查询关键字
+   * parmas:
+   *  keyword: 查询名称
+   * */
+  public getGoodsSearchKey = (parmas = {}) => instance.get('/search/helper', parmas);
+
 }
+
 export default new Https();
 
 

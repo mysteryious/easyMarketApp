@@ -1,7 +1,7 @@
 <template>
   <div class="topic">
-    <header class="header">
-      <input type="text" placeholder="搜索商品，共239款好物" />
+    <header class="searchWrap">
+      <span @click="toGoodsSearch">搜索商品，共239款好物</span>
     </header>
     <main class="main">
       <Tab :categoryList="categoryList" :ind="ind" :chengIndex="chengIndex"></Tab>
@@ -48,6 +48,9 @@ export default {
       this.getCatalogMsg({ params: { id: index } }).then(res => {
         this.currentCategory = res.currentCategory;
       });
+    },
+    toGoodsSearch(){
+      this.$router.history.push("/goodsSearch")
     }
   },
   created() {},

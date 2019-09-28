@@ -5,11 +5,12 @@
     display: flex;
     flex-direction: column;
     font-size: 14px;
+    .main {
+        flex: 1;
+        overflow: auto;
+    }
 }
-.main {
-    flex: 1;
-    overflow: auto;
-}
+
 //头部
 .userMsgWrap {
     height: 1.5rem;
@@ -82,7 +83,7 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     min-width: 0.6rem;
     border-radius: 3px;
     background-color: rgba(58, 58, 58, 0.9);
